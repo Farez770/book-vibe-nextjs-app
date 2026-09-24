@@ -9,18 +9,23 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <Link href="/" className="font-semibold text-lg">
+        <Link href="/" className="font-semibold ">
           Home
         </Link>
       </li>
       <li>
-        <Link href="/listed-books" className="font-semibold text-lg">
+        <Link href="/books" className="font-semibold ">
+          All Books
+        </Link>
+      </li>
+      <li>
+        <Link href="/listed-books" className="font-semibold ">
           {" "}
           Listed Books
         </Link>
       </li>
       <li>
-        <Link href="/page-to-read" className="font-semibold text-lg">
+        <Link href="/page-to-read" className="font-semibold ">
           Pages to Read
         </Link>
       </li>
