@@ -1,6 +1,8 @@
+import ReadButton from "@/components/bookDetails/ReadButton";
 import { IBook } from "@/types/books.type";
 import Image from "next/image";
 import React from "react";
+// import Books from "../../../components/homapage/Books";
 
 interface IBookDetailsPageProps {
   params: Promise<{
@@ -131,7 +133,7 @@ const BookDetailsPage = async ({ params }: IBookDetailsPageProps) => {
 
           {/* Button */}
           <div className="card-actions mt-5">
-            <button className="btn border  px-8  ">Read</button>
+            <ReadButton book={book} />
             <button className="btn border-0 bg-[#50B1C9] px-8 text-white hover:bg-[#3bb6d4]">
               Wishlist
             </button>
