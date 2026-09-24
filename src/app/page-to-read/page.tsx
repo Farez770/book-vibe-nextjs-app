@@ -1,13 +1,112 @@
-import React from "react";
+"use client";
+import { BooksContext } from "@/context/BooksContextProvider";
+import { IBook } from "@/types/books.type";
+import React, { useContext } from "react";
 
-// type Props = {}
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  BarShapeProps,
+  LabelList,
+  Label,
+  LabelProps,
+  Tooltip,
+} from "recharts";
 
-const page = () => {
+const colors = [
+  "#0088FE",
+  "#00C49F",
+  "#FFBB28",
+  "#FF8042",
+  "red",
+  "pink",
+  "black",
+];
+
+const getPath = (x: number, y: number, width: number, height: number) => {
+  return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3}
+  ${x + width / 2}, ${y}
+  C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y + height} ${x + width}, ${y + height}
+  Z`;
+};
+
+const TriangleBar = (props: BarShapeProps) => {
+  const { x, y, width, height, index } = props;
+
+  const color = colors[index % colors.length];
+
   return (
-    <div>
-      <h1>This is Page to Read page</h1>
+    <path
+      strokeWidth={props.isActive ? 5 : 0}
+      d={getPath(Number(x), Number(y), Number(width), Number(height))}
+      stroke={color}
+      fill={color}
+      style={{
+        transition: "stroke-width 0.3s ease-out",
+      }}
+    />
+  );
+};
+
+const CustomColorLabel = (props: LabelProps) => {
+  const fill = colors[(props.index ?? 0) % colors.length];
+  return <Label {...props} fill={fill} />;
+};
+
+const ReadBooksPage = () => {
+  const { readBooks } = useContext(BooksContext) as { readBooks: IBook[] };
+
+  const data = readBooks.map((book: IBook) => {
+    return {
+      name: book.bookName,
+      uv: book.totalPages,
+      pv: 2400,
+      amt: 2400,
+    };
+  });
+
+  return (
+    <div className="container mx-auto px-6 mt-4 ">
+      <div className="flex justify-center">
+        {/* <h1 className="text-xl font-bold text-center mb-4">Page to Read</h1> */}
+        {readBooks.length > 0 ? (
+          <BarChart
+            style={{
+              width: "100%",
+              maxWidth: "700px",
+              maxHeight: "70vh",
+              aspectRatio: 1.618,
+            }}
+            responsive
+            data={data}
+            margin={{
+              top: 20,
+              right: 0,
+              left: 0,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid />
+            <Tooltip cursor={{ fillOpacity: 0.5 }} />
+            <XAxis dataKey="name" />
+            <YAxis width="auto" />
+            <Bar dataKey="uv" shape={TriangleBar} activeBar>
+              <LabelList content={CustomColorLabel} position="top" />
+            </Bar>
+            {/* <RechartsDevtools /> */}
+          </BarChart>
+        ) : (
+          <p className="font-bold text-xl text-center">
+            {" "}
+            No read books to display.
+          </p>
+        )}
+      </div>
     </div>
   );
 };
 
-export default page;
+export default ReadBooksPage;
