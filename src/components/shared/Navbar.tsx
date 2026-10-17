@@ -79,7 +79,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={-1}
-              className="menu menu-sm dropdown-content bg-white rounded-box z-100 mt-6 w-72 p-2 shadow flex flex-col justify-center items-center gap-2"
+              className="menu menu-sm dropdown-content bg-white rounded-box z-100 mt-4 w-sm p-2 shadow flex flex-col justify-center items-center gap-2"
             >
               {links}
               <div className="sm:hidden">{authLinks}</div>
@@ -87,7 +87,7 @@ const Navbar = () => {
           </div>
           <div>
             <Link href="/" className="btn border-0 font-bold">
-              <Image src={logo} alt="Logo image" className="md:w-7.5" />
+              <Image src={logo} alt="Logo image" className="w-9 md:w-7.5" />
               <span className="md:text-xl">Book Vibe</span>
             </Link>
           </div>
