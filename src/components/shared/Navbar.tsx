@@ -63,7 +63,7 @@ const Navbar = () => {
               <svg
                 aria-label="Menu"
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8"
+                className="h-7 w-7"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -86,14 +86,14 @@ const Navbar = () => {
             </ul>
           </div>
           <div>
-            <Link href="/" className="btn border-0 text-xl font-bold">
-              <Image src={logo} alt="Logo image" className=" md:w-7.5" />
-              <span className="text-sm sm:text-lg md::text-xl">Book Vibe</span>
+            <Link href="/" className="btn border-0 font-bold">
+              <Image src={logo} alt="Logo image" className="md:w-7.5" />
+              <span className="md:text-xl">Book Vibe</span>
             </Link>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 py-2 z-10 bg-white">
+          <ul className="menu menu-horizontal px-1 py-2 z-10 bg-white ">
             {links}
           </ul>
         </div>
